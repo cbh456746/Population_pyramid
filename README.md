@@ -4,7 +4,7 @@
 이 프로젝트는 일본의 연령별 성별 인구 데이터를 JSON 파일에서 읽어와, 연도별 인구 피라미드 그래프를 생성하고 저장하는 Python 스크립트입니다.
 
 ## Object1. (Json -> png)
-```
+```python
 def pyramid_image(path,country):
     """
     :param path: json file path
@@ -49,7 +49,7 @@ def pyramid_image(path,country):
 ```
 - 입력 데이터 : JSON 파일은 연도별로 남성과 여성의 연령대별 인구 데이터를 포함해야 합니다. 
 (예시)
-```
+```json
 data = {
     'year1' : {
                 'total' = [ num1, num2, ... ],
@@ -68,7 +68,7 @@ data = {
 - 특징: 남성은 왼쪽(파란색), 여성은 오른쪽(빨간색)으로 표시되며, X축은 인구를 만 단위로 변환해 보여줍니다.
 
 ## Object2. (png -> gif)
-```
+```python
 def pyramid_gif(country,imagelist,gif_name="population_pyramid.gif",duration=500):
     """
     :param country: country name
