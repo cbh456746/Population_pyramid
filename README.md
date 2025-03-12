@@ -52,7 +52,7 @@ def pyramid_image(path,country):
 ```json
 {
     "year1": {
-        "total": [ num1, num2, ... ],
+        "total": [ num1, num2, ... ], #num은 실제 데이터 숫자값
         "male": [ num1, num2, ... ],
         "female": [ num1, num2, ... ]
     },
