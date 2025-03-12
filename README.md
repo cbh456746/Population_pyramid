@@ -105,3 +105,8 @@ plt.rcParams['axes.unicode_minus'] = False  # 음수 기호 깨짐 방지
 - 특정 연도의 연령대별 인구 분포를 쉽게 확인할 수 있습니다.
 - 정책 결정 및 사회 연구에 활용할 수 있는 유용한 시각적 자료를 제공합니다.
 
+## 결과 예시
+
+![Japanese population from 1980 to 2020](https://github.com/cbh456746/Population_pyramid/blob/main/japan_population_pyramid.gif)
+
+
