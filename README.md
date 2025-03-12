@@ -4,6 +4,54 @@
 이 프로젝트는 일본의 연령별 성별 인구 데이터를 JSON 파일에서 읽어와, 연도별 인구 피라미드 그래프를 생성하고 저장하는 Python 스크립트입니다.
 
 ## 주요 기능
+
+## 코드 예시
+
+```
+def pyramid_image(path,country):
+    """
+    :param path: json file path
+    :param country: country_name
+    :return: None
+    """
+    #인구 연령 범례 지정
+    age_groups = ["0-4세", "5-9세", "10-14세", "15-19세", "20-24세",
+                  "25-29세", "30-34세", "35-39세", "40-44세", "45-49세",
+                  "50-54세", "55-59세", "60-64세", "65-69세", "70-74세",
+                  "75-79세", "80-84세", "85세 이상"]
+
+    with open(path, "r", encoding="utf-8") as file:
+        data = json.load(file) # data type => dictionary
+
+    # 연도별 인구 피라미드 생성
+    for year in data.keys():
+        # 해당 연도의 데이터 추출
+        male = data[year]["male"]
+        female = data[year]["female"]
+
+        # 그래프 설정
+        plt.figure(figsize=(10, 8))  # 가로 크기 약간 증가
+        plt.barh(age_groups, [-m for m in male], color='blue', label='Male')  # 음수로 남성
+        plt.barh(age_groups, female, color='red', label='Female')             # 양수로 여성
+
+        # 축과 제목 설정
+        plt.xlabel("인구 (단위: 만)")
+        plt.ylabel("연령 그룹")
+        plt.title(f"{country} Population Pyramid in {year}")
+        plt.legend()
+
+        # X축 단위 설정 (만 단위로 변환)
+        plt.gca().xaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{int(abs(x) / 10000):,}'))
+        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(500000))  # 50만 단위로 조정
+
+        # 그래프 저장 (공백 제거 및 경로 명시 가능)
+        plt.savefig(f"{country}_population_pyramid_{year}.png", bbox_inches='tight')
+        plt.close()  # 메모리 절약을 위해 닫기
+
+    print(f"{country}의 모든 연도에 대한 피라미드 그래프가 저장되었습니다.")
+```
+
+
 ### 1. 데이터 로드
 - JSON 파일(`japan_population.json`)을 불러와 딕셔너리 형태로 저장합니다.
 - 데이터는 `male`(남성), `female`(여성) 키를 가지며 연도별로 저장되어 있습니다.
