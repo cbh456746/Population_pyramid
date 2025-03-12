@@ -2,9 +2,8 @@
 
 ## 1.데이터 소개
 
-```md
-[JSON 파일 보기](https://github.com/cbh456746/Population_pyramid/blob/main/japan_population.json)
-```
+[JSON 파일 보기](https://raw.githubusercontent.com/cbh456746/Population_pyramid/main/japan_population.json)
+
 
 
 ## 2.
