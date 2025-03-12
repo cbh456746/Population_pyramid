@@ -3,10 +3,7 @@
 ## 개요
 이 프로젝트는 일본의 연령별 성별 인구 데이터를 JSON 파일에서 읽어와, 연도별 인구 피라미드 그래프를 생성하고 저장하는 Python 스크립트입니다.
 
-## 주요 기능
-
-## 코드 예시
-
+## Object1. (Json -> png)
 ```
 def pyramid_image(path,country):
     """
@@ -50,6 +47,28 @@ def pyramid_image(path,country):
 
     print(f"{country}의 모든 연도에 대한 피라미드 그래프가 저장되었습니다.")
 ```
+### 1.
+
+## Object2. (png -> gif)
+```
+def pyramid_gif(country,imagelist,gif_name="population_pyramid.gif",duration=500):
+    """
+    :param country: country name
+    :param imagelist: list of image_path ex) [imagepath1, imageoath2, ... ]
+    :param gif_name: name of file
+    :param duration: duration of each image
+    :return:
+    """
+    if not imagelist:
+        print(f"⚠ {country}의 GIF를 생성할 이미지가 없습니다.")
+        return
+    frames = [Image.open(img) for img in imagelist]
+    frames[0].save(f"{country}_population_pyramid.gif", save_all=True, append_images=frames[1:], duration=duration, loop=0)
+    print(f"{country} gif 파일 생성 완료!")
+```
+
+
+
 
 
 ### 1. 데이터 로드
@@ -81,6 +100,19 @@ def pyramid_image(path,country):
    ```
 2. `japan_population.json` 파일을 프로젝트 폴더에 위치시킵니다.
 3. 스크립트를 실행하면 각 연도별 인구 피라미드 그래프가 생성되고 PNG 파일로 저장됩니다.
+
+## 필요 모듈 및 초기설정 
+```
+import json
+import matplotlib.pyplot as plt
+from matplotlib import ticker
+from PIL import Image
+
+# 한글 폰트 설정 (Mac 환경)
+plt.rc('font', family='AppleGothic')
+plt.rcParams['axes.unicode_minus'] = False  # 음수 기호 깨짐 방지
+```
+
 
 ## 기대 효과
 - 인구 구조 변화를 시각적으로 분석할 수 있습니다.
